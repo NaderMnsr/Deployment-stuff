@@ -1,0 +1,14 @@
+//Steps needed to complete doplyment to production server:
+
+Currently all steps will be executed in the staging server (Recettes).
+
+- access server using SSH
+- sudo apt update
+
+- install git on the server 
+- sudo apt install git
+
+- create new folder
+- mkdir production
+
+
