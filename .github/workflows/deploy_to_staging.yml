@@ -28,6 +28,8 @@ jobs:
       - name: Install sshpass
         run: sudo apt-get install -y sshpass
 
-      - name: Deploy to Staging
-        run: sshpass -p ${{ secrets.TEST_SSH_PASSWORD }} scp -r "${{ github.workspace }}/*" ${{ secrets.TEST_SSH_USERNAME }}@${{ secrets.TEST_SSH_IP }}:/var/www/html/production/
-          
+      - name: Debug information
+        run: |
+          set -x
+          sshpass -p *** scp -r /home/runner/work/Deployment-stuff/Deployment-stuff/* ***@***:/var/www/html/production/
+      
