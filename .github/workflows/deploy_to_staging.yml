@@ -31,5 +31,5 @@ jobs:
       - name: Debug information
         run: |
           set -x
-          sshpass -p ${{ secrets.TEST_SSH_PASSWORD }} scp -r -P 2804 /home/runner/work/Deployment-stuff/Deployment-stuff/*  toor@185.88.197.125:/var/www/html/production/
+          sshpass -p ${{ secrets.TEST_SSH_PASSWORD }} scp -r -P 22 /home/runner/work/Deployment-stuff/Deployment-stuff/*  toor@62.4.27.3:/var/www/html/production/
       
