@@ -27,5 +27,5 @@ jobs:
         run: sudo apt-get install -y sshpass
 
       - name: Deploy to Staging
-        run: sshpass -p ${{ secrets.TEST_SSH_PASSWORD }} scp -r ./path/to/local/files/* ${{ secrets.TEST_SSH_USERNAME }}@${{ secrets.TEST_SSH_IP }}:/var/www/html/production/
+        run: sshpass -p ${{ secrets.TEST_SSH_PASSWORD }} scp -r -R ${{ secrets.TEST_SSH_PORT }} ./path/to/local/files/* ${{ secrets.TEST_SSH_USERNAME }}@${{ secrets.TEST_SSH_IP }}:/var/www/html/production/
           
