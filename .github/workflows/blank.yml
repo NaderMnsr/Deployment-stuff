@@ -1,0 +1,26 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Deploy to Staging
+
+on:
+  push:
+    branches:
+      - staging
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.5.0
+        with:
+          ssh-private-key: ${{ secrets.TEST_SSH_PRIVATE_KEY }}
+          ssh-known-hosts: ${{ secrets.TEST_SSH_KNOWN_HOSTS }}
+
+      - name: Deploy to Staging
+        run: |
+          
