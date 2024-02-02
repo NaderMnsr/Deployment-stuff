@@ -23,7 +23,7 @@ jobs:
       - name: Debug information
         run: |
           echo "GitHub workspace: ${GITHUB_WORKSPACE}"
-          ls -R "${GITHUB_WORKSPACE}"
+          ls -R "{{ github.workspace }}"
 
       - name: List local files
         run: |
