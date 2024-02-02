@@ -15,12 +15,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up SSH
-        uses: webfactory/ssh-agent@v0.5.0
-        with:
-          ssh-private-key: ${{ secrets.TEST_SSH_PRIVATE_KEY }}
-          ssh-known-hosts: ${{ secrets.TEST_SSH_KNOWN_HOSTS }}
+      - name: Install sshpass
+        run: sudo apt-get install -y sshpass
 
       - name: Deploy to Staging
-        run: |
+        run: sshpass -p ${{ secrets.TEST_SSH_PASSWORD }} scp -r ./path/to/local/files/* ${{ secrets.TEST_SSH_USERNAME }}@${{ secrets.TEST_SSH_IP }}:/var/www/html/production/
           
