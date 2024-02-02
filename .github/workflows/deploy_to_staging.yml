@@ -19,13 +19,19 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
+
+      - name: Debug information
+        run: |
+          echo "GitHub workspace: ${GITHUB_WORKSPACE}"
+          ls -R "${GITHUB_WORKSPACE}"
+
       - name: List local files
         run: |
-          ls -l ./path/to/local/files/*
+          ls -l ${{ github.workspace }}/*
 
       - name: Install sshpass
         run: sudo apt-get install -y sshpass
 
       - name: Deploy to Staging
-        run: sshpass -p ${{ secrets.TEST_SSH_PASSWORD }} scp -r ./path/to/local/files/* ${{ secrets.TEST_SSH_USERNAME }}@${{ secrets.TEST_SSH_IP }}:/var/www/html/production/
+        run: sshpass -p ${{ secrets.TEST_SSH_PASSWORD }} scp -r "${{ github.workspace }}/*" ${{ secrets.TEST_SSH_USERNAME }}@${{ secrets.TEST_SSH_IP }}:/var/www/html/production/
           
