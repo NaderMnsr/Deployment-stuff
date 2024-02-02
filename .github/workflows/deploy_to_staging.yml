@@ -10,10 +10,18 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    
+    env:
+        NODE_VERSION: 16
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: List local files
+        run: |
+          ls -l ./path/to/local/files/*
 
       - name: Install sshpass
         run: sudo apt-get install -y sshpass
