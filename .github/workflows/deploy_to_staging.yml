@@ -24,7 +24,8 @@ jobs:
         run: |
           echo "GitHub workspace: ${GITHUB_WORKSPACE}"
           ls -R "${{ github.workspace }}"
-          ls -l /home/runner/work/Deployment-stuff/Deployment-stuff/*
+          ls -l ${{ github.workspace }}/*
+          ls -l ${{ github.workspace }}
 
 
       - name: Install sshpass
