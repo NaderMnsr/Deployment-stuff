@@ -30,8 +30,20 @@ jobs:
       - name: Install sshpass
         run: sudo apt-get install -y sshpass
 
+      - name: Install rsync
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y rsync
+
+
       - name: Debug information
         run: |
           set -x
           sshpass -p ${{ secrets.TEST_SSH_PASSWORD }} scp -r -P 22 /home/runner/work/Deployment-stuff/Deployment-stuff/  toor@62.4.27.3:/var/www/html/production/
-      
+      - name: Deploy using rsync
+        run: |
+          rsync -av -e "sshpass -p '${{ secrets.PRODUCTION_SSH_PASSWORD }}' ssh -p ${SSH_PORT}" \
+          /home/runner/work/Deployment-stuff/Deployment-stuff/ \
+          ${{ secrets.PRODUCTION_SSH_USERNAME }}@${{ secrets.PRODUCTION_SSH_IP }}:/var/www/html/production/
+        env:
+          SSH_PORT: ${{ secrets.PRODUCTION_SSH_PORT }}
