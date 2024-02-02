@@ -8,7 +8,14 @@ Currently all steps will be executed in the staging server (Recettes).
 - install git on the server 
 - sudo apt install git
 
-- create new folder
+- create new folder in var/www/html
 - mkdir production
+
+- intialize git inside the folder
+- git init
+
+-
+
+
 
 
