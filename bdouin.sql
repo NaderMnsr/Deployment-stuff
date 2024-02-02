@@ -38,3 +38,5 @@ FROM pskl_orders o
 WHERE o.`id_shop` IN ('1')
 ORDER BY o.`date_add` desc
 LIMIT 100
+
+
