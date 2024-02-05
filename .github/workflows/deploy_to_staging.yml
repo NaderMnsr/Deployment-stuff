@@ -38,7 +38,7 @@ jobs:
           port: ${{ secrets.TEST_SSH_PORT }}
           script: |
             mkdir -p /var/www/html/production/
-            rsync -avz --delete . /var/www/html/production/
+            rsync -avz --delete ./home/ /var/www/html/production/
 
       # - name: Install sshpass
       #   run: sudo apt-get install -y sshpass
