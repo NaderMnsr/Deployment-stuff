@@ -28,7 +28,7 @@ jobs:
 
       - name: Deploy to Debian Server/actions
         uses: actions/checkout@v2
-
+        
       - name: Deploy to Debian Server
         uses: appleboy/ssh-action@master
         with:
@@ -37,8 +37,8 @@ jobs:
           password: ${{ secrets.TEST_SSH_PASSWORD }}
           port: ${{ secrets.TEST_SSH_PORT }}
           script: |
-            mkdir -p /home/runner/work/Deployment-stuff/Deployment-stuff/
-            rsync -avz --delete ./path/to/local/files/ /var/www/html/production/
+            mkdir -p /var/www/html/production/
+            rsync -avz --delete ${{ github.workspace }} /var/www/html/production/
 
       # - name: Install sshpass
       #   run: sudo apt-get install -y sshpass
