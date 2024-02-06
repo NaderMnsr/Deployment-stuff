@@ -44,6 +44,9 @@ jobs:
       - name: Display changed files
         run: cat changed_files.txt
 
+      - name: Print working directory
+        run: pwd
+
       - name: Deploy to Debian Server
         uses: appleboy/ssh-action@master
         with:
@@ -53,11 +56,11 @@ jobs:
           port: ${{ secrets.TEST_SSH_PORT }}
           script: |      
             mkdir -p /var/www/html/production1/  
-            xargs -a changed_files.txt -I {} rsync -avz --delete --filter "merge /" {} /var/www/html/production1/
+            xargs -a changed_files.txt -I {} rsync -avz --delete ${GITHUB_WORKSPACE}/{} /var/www/html/production1/
 
       # Ensure production directory exists
       # Upload only merged files (optional modification)
-
+      # /home/runner/work/Deployment-stuff/Deployment-stuff
       # mkdir -p /var/www/html/production/
       # rsync -avz --delete ./home/ /var/www/html/production/
 
