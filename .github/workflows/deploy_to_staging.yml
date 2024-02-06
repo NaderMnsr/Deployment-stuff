@@ -26,6 +26,8 @@ jobs:
       
       - name: Deploy to Debian Server/actions
         uses: actions/checkout@v2
+        with: 
+          fetch-depth: 0
 
       - name: Debug information
         run: |
