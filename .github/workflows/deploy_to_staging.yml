@@ -26,6 +26,14 @@ jobs:
           ls -R "${{ github.workspace }}"
           ls -l ${{ github.workspace }}
 
+      - name: Determine changed files
+        id: changed_files
+        run: |
+           git diff --name-only ${{ github.event.before }} ${{ github.sha }} > changed_files.txt
+
+      - name: Display changed files
+        run: cat changed_files.txt
+
       - name: Deploy to Debian Server/actions
         uses: actions/checkout@v2
         
@@ -38,7 +46,7 @@ jobs:
           port: ${{ secrets.TEST_SSH_PORT }}
           script: |      
             mkdir -p /var/www/html/production1/  
-            rsync -avz --delete --filter "merge /" . /var/www/html/production1/
+            xargs -a changed_files.txt -I {} rsync -avz --delete --filter "merge /" {} /var/www/html/production1/
       # Ensure production directory exists
       # Upload only merged files (optional modification)
 
