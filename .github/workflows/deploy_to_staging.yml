@@ -46,7 +46,9 @@ jobs:
 
       - name: Print working directory
         run: pwd
-
+      - name: Install git-ftp
+        run: sudo apt-get install -y git-ftp
+        
       - name: Deploy to Debian Server
         uses: appleboy/ssh-action@master
         with:
