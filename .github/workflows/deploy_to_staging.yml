@@ -32,6 +32,7 @@ jobs:
           echo "GitHub workspace: ${GITHUB_WORKSPACE}"
           ls -R "${{ github.workspace }}"
           ls -l ${{ github.workspace }}
+          git log --format=oneline -n 5
 
       - name: Determine changed files
         id: changed_files
