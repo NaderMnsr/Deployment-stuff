@@ -46,8 +46,12 @@ jobs:
 
       - name: Print working directory
         run: pwd
+        
+      - name: Enable Universe repository
+        run: sudo add-apt-repository universe
+
       - name: Install git-ftp
-        run: sudo apt-get install -y git-ftp
+        run: sudo apt-get update && sudo apt-get install -y git-ftp
 
       - name: Deploy to Debian Server
         uses: appleboy/ssh-action@master
@@ -57,7 +61,8 @@ jobs:
           password: ${{ secrets.TEST_SSH_PASSWORD }}
           port: ${{ secrets.TEST_SSH_PORT }}
           
-          script: |      
+          script: |
+            sudo apt-get update && sudo apt-get install -y git-ftp
             git ftp push --user ${{ secrets.TEST_SSH_USERNAME }} --passwd ${{ secrets.TEST_SSH_PASSWORD }} ftp://${{ secrets.TEST_SSH_IP }}:${{ secrets.TEST_SSH_PORT }}/var/www/html/production2/
       # script: |      
       #   mkdir -p /var/www/html/production1/  
