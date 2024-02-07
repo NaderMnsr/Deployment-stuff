@@ -31,7 +31,7 @@ jobs:
 
       - name: Print working directory
         run: pwd
-        
+
       - name: Debug information
         run: |
           echo "GitHub workspace: ${GITHUB_WORKSPACE}"
@@ -66,8 +66,9 @@ jobs:
           
           script: |
             cd ${{ github.workspace }}
+            git ftp init --user ${{ secrets.TEST_SSH_USERNAME }} --passwd ${{ secrets.TEST_SSH_PASSWORD }} ftp://${{ secrets.TEST_SSH_IP }}:${{ secrets.TEST_SSH_PORT }}/var/www/html/production2/
             git ftp push --user ${{ secrets.TEST_SSH_USERNAME }} --passwd ${{ secrets.TEST_SSH_PASSWORD }} ftp://${{ secrets.TEST_SSH_IP }}:${{ secrets.TEST_SSH_PORT }}/var/www/html/production2/
-      # script: |      
+            # script: |      
       #   mkdir -p /var/www/html/production1/  
       #   xargs -a ${GITHUB_WORKSPACE}/changed_files.txt -I {} rsync -avz --delete ${GITHUB_WORKSPACE}/{} /var/www/html/production1/ 
       # Ensure production directory exists
