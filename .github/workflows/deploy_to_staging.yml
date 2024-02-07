@@ -62,6 +62,7 @@ jobs:
           port: ${{ secrets.TEST_SSH_PORT }}
           
           script: |
+            cd ${{ github.workspace }}
             git ftp push --user ${{ secrets.TEST_SSH_USERNAME }} --passwd ${{ secrets.TEST_SSH_PASSWORD }} ftp://${{ secrets.TEST_SSH_IP }}:${{ secrets.TEST_SSH_PORT }}/var/www/html/production2/
       # script: |      
       #   mkdir -p /var/www/html/production1/  
