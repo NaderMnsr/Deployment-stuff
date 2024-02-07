@@ -29,6 +29,9 @@ jobs:
         with: 
           fetch-depth: 0
 
+      - name: Print working directory
+        run: pwd
+        
       - name: Debug information
         run: |
           echo "GitHub workspace: ${GITHUB_WORKSPACE}"
